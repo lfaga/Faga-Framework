@@ -1,0 +1,26 @@
+.tab { color: #F2F4F7; }
+
+.tab .disabled { cursor: no-drop; }
+
+.tab .disabled .tabbody {
+  background-color: #6289AE;
+  color: #AECEDB;
+  font-style: italic;
+}
+
+.tab .focused .tabbody { background-color: #172972; }
+
+.tab .last .tabbody .button {
+  color: #000000;
+  height: 16px;
+  line-height: 14px;
+}
+
+.tab .unfocused .tabbody { background-color: #6289AE; }
+
+.tab a {
+  color: #E0E7ED;
+  text-decoration: none;
+}
+
+.tab a:hover { color: #FFFFFF; }

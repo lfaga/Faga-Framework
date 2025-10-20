@@ -1,0 +1,21 @@
+<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<asp:LinkButton SkinId="lnkSearch" runat="server" CssClass="button" Width="80px" Text="<img src='/Images/icons/icon_search.gif'>Buscar"/>
+<asp:LinkButton SkinId="lnkNew" runat="server" CssClass="button" Width="80px" Text="<img src='/Images/icons/icon_new.gif'>Nuevo"/>
+<asp:LinkButton SkinId="lnkCopy" runat="server" CssClass="button" Width="80px" Text="<img src='/Images/icons/icon_copy.gif'>Copiar"/>
+<asp:LinkButton SkinId="lnkSave" runat="server" CssClass="button" Width="80px" Text="<img src='/Images/icons/icon_save.gif'>Grabar"/>
+<asp:LinkButton SkinId="lnkDelete" runat="server" CssClass="button" Width="80px" Text="<img src='/Images/icons/icon_delete.gif'>Borrar"/>
+<asp:LinkButton SkinId="lnkCancel" runat="server" CssClass="button" Width="80px" Text="<img src='/Images/icons/icon_cancel.gif'>Cancelar"/>

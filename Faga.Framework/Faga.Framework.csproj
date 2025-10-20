@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1E5101FC-D8B2-4F75-8019-4F36BA8055DF}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Faga.Framework</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\Faga.Framework.pfx</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Faga.Framework</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>false</SignAssembly>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/Faga.Framework/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Debug\x86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\Release\x86\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\CollectionConvert.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Collections\CollectionConvertIgnoreAttribute.cs" />
+    <Compile Include="Collections\GenericCollectionUtility.cs" />
+    <Compile Include="Configuration\ApplicationConfiguration.cs" />
+    <Compile Include="Configuration\ApplicationConfigurationSection.cs" />
+    <Compile Include="Configuration\GenericConfigurationElement.cs" />
+    <Compile Include="Configuration\ProvidersHelper.cs" />
+    <Compile Include="Configuration\ReportingConfigurationElement.cs" />
+    <Compile Include="Configuration\GenericConfigurationCollection.cs" />
+    <Compile Include="Configuration\UserDataProviderSettingsHelper.cs" />
+    <Compile Include="Configuration\ProviderSettingsHelper.cs" />
+    <Compile Include="Configuration\SecurityProviderSettingsHelper.cs" />
+    <Compile Include="Configuration\DataProviderSettingsHelper.cs" />
+    <Compile Include="ConvertIt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cryptography\TripleDES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\AutoNumericFieldAttribute.cs" />
+    <Compile Include="Data\AutoCreateGuidAttribute.cs" />
+    <Compile Include="Data\PrimaryKeyAttribute.cs" />
+    <Compile Include="Data\Generics\BaseBLData.cs" />
+    <Compile Include="Data\Generics\BaseBLMasterData.cs" />
+    <Compile Include="Data\Generics\BaseDAMasterData.cs" />
+    <Compile Include="Data\DataProvider.cs" />
+    <Compile Include="Data\Generics\BLGeneric.cs" />
+    <Compile Include="Data\Generics\DAGeneric.cs" />
+    <Compile Include="Data\IConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ParameterCollection.cs" />
+    <Compile Include="Data\PrimaryKeyComparer.cs" />
+    <Compile Include="Data\TableInfoAttribute.cs" />
+    <Compile Include="Data\Transactions\BaseTransaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\Generics\DAGenericIgnoreAttribute.cs" />
+    <Compile Include="Data\Transactions\SimpleTransaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\Transactions\TransactionType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\Transactions\UndoableTransaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GenericEventArgs.cs" />
+    <Compile Include="Interception\InterceptableAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interception\InterceptableContextProps.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interception\InterceptableMsgSink.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IsNull.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\LogableAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\LoggingProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Model\Collections\ExtendedPropertyDictionary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Model\LoggingMethod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Model\LogRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Model\Severity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Providers\ILoggingProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\Providers\LoggingProviderFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\ApplicationProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Exceptions\AccessDeniedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Exceptions\ApplicationMismatchException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Exceptions\UserDataProviderException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GroupPermissionProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\GroupProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\Application.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\Collections\ApplicationCollection.cs" />
+    <Compile Include="Security\Model\Collections\GroupCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\Collections\GroupPermissionCollection.cs" />
+    <Compile Include="Security\Model\Collections\PermissionCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\Collections\PermissionParamCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\Collections\PermissionValueCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\Collections\UserCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\Collections\UserGroupCollection.cs" />
+    <Compile Include="Security\Model\Group.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\GroupPermission.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\LoggingEvents.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\Permission.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\PermissionParam.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\PermissionValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\User.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Model\UserGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\PermissionParamProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\PermissionProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\PermissionValueProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\Generics\BaseDAData.cs" />
+    <Compile Include="Security\Providers\BaseDAApplication.cs" />
+    <Compile Include="Security\Providers\BaseDAGroupPermission.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Providers\BaseDAGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Providers\BaseDAPermissionParam.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Providers\BaseDAPermission.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Providers\BaseDAPermissionValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Providers\BaseDAUserGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Providers\BaseDAUser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Providers\SecurityDAFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\RequiresPermissionAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\Transactions\SecurityTransaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\UserData\Providers\IUserDataProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\UserData\Providers\UserDataProviderFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\UserData\UserDataProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\UserGroupProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\UserImpersonation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\UserProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\XmlSerializationHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SharedAssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Translation\Providers\ITranslationProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Translation\Providers\TranslationProviderFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Translation\TextLength.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Translation\TranslationProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utility\StringUtility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Faga.Framework.pfx">
+      <Link>Faga.Framework.pfx</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

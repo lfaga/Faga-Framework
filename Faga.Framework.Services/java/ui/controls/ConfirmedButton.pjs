@@ -1,0 +1,50 @@
+//Class ConfirmedButton
+
+	// Constructor *********************************
+	
+		ConfirmedButton = function(_id, _msg)
+		{
+			this.setControlHandle(_id);
+			this.MessageText = _msg;
+		}
+
+	
+	// Inheritance *********************************
+	
+		ConfirmedButton.prototype = new Control();
+
+
+	// Properties **********************************
+	
+	  ConfirmedButton.prototype.MessageText = "¿Desea continuar?";
+	
+	
+	// Methods *************************************
+	
+		ConfirmedButton.prototype.onLoad = function()
+		{
+			this.controlHandle.onclick = this.getThis_OnClick();
+		}
+		
+		ConfirmedButton.prototype.getThis_OnClick = function()
+		{
+			var parentInstance = this;
+			
+			return (
+				function()
+				{
+          var ret = parentInstance.page.ShowConfirm(parentInstance.MessageText)
+
+					if (ret != null)
+						return ( ret );
+
+					return (false);
+				}
+			);
+		}
+
+		ConfirmedButton.prototype.dispose = function()
+		{
+		}
+
+//End Class ConfirmedButton

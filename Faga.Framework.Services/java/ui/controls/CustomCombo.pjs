@@ -1,0 +1,244 @@
+//Class CustomCombo
+
+	// Constructor *********************************
+	
+		CustomCombo = function(_id, _description)
+		{
+			this.setControlHandle(_id + "_text");
+			this.id = _id;
+			this.description = _description;	
+			this.divPopup = document.getElementById(_id + "_divPopup");
+			this.hidValue = document.getElementById(_id + "_value");
+		}
+
+	
+	// Inheritance *********************************
+	
+		CustomCombo.prototype = new ValidatedControl();
+
+
+	// Properties **********************************
+	
+		CustomCombo.prototype.divPopup = null;
+		CustomCombo.prototype.hidValue = null;
+		
+		CustomCombo.prototype.Texts = new Array();
+		CustomCombo.prototype.Values = new Array();
+		
+		CustomCombo.prototype.val_fail_msg = "Debe completar este campo.";
+		CustomCombo.prototype.timerHandle = null;
+		CustomCombo.prototype.selectedValue = null;
+	
+	// Events **************************************
+
+		CustomCombo.prototype.onClick = function(source, eventargs) {}
+
+	// Methods *************************************
+	
+		CustomCombo.prototype.onLoad = function()
+		{
+			this.divPopup.style.visibility = "hidden";
+			this.divPopup.style.display = "none";
+			
+			this.controlHandle.onkeyup = this.getThis_OnKeyUp();
+			this.controlHandle.onfocus = this.getThis_OnFocus();
+			this.controlHandle.onblur = this.getThis_OnBlur();
+			this.controlHandle.onclick = this.getThis_OnClick();
+				
+			this.initValidatedControl(true);
+		}
+
+		CustomCombo.prototype.dispose = function()
+		{
+			if( this.timerHandle != null )
+				window.clearTimeout(this.timerHandle);
+				
+			this.controlHandle.onkeyup = null;
+			this.controlHandle.onfocus = null;
+			this.controlHandle.onblur = null;
+			this.controlHandle.onclick = null;
+			this.divPopup = null;
+			this.hidValue = null;
+		}
+		
+		CustomCombo.prototype.validationFunction = function()
+		{
+			return (true);
+		}
+		
+		CustomCombo.prototype.getThis_OnKeyUp = function()
+		{
+			var parentInstance = this;
+			
+			return (
+				function()
+				{
+					if( (parentInstance.Enabled)
+						&& (parentInstance.controlHandle.value != null) )
+					{
+						if( parentInstance.timerHandle != null )
+							window.clearTimeout(parentInstance.timerHandle);
+							
+						parentInstance.timerHandle =
+							window.setTimeout(parentInstance.get_AutoComplete(), 200);
+					}
+				}
+			);
+		}
+		
+		CustomCombo.prototype.getThis_OnFocus = function()
+		{
+			var parentInstance = this;
+			
+			return (
+				function()
+				{
+					if( parentInstance.Enabled )
+						parentInstance.setVisibility(true);
+				}
+			);
+		}
+		
+		CustomCombo.prototype.getThis_OnBlur = function()
+		{
+			var parentInstance = this;
+			
+			return (
+				function()
+				{
+					if( parentInstance.Enabled )
+						parentInstance.setVisibility(false);
+				}
+			);
+		}
+		
+		CustomCombo.prototype.getThis_OnClick = function()
+		{
+			var parentInstance = this;
+			
+			return (
+				function()
+				{
+					//Raise Event
+					ret = parentInstance.onClick(parentInstance, null);
+					if (ret != null)
+						return ( ret );
+
+					return (false);
+				}
+			);
+		}
+		
+				
+		CustomCombo.prototype.get_AutoComplete = function()
+		{
+			var parentInstance = this;
+			
+			return (
+				function()
+				{
+					var viscnt = 0;
+					parentInstance.timerHandle = null;
+					parentInstance.setVisibility(true);
+					var t = new String(parentInstance.controlHandle.value);
+					for (i=0; i<parentInstance.Texts.length; i++)
+					{
+						var s = new String(parentInstance.Texts[i]);
+						var o = document.getElementById( parentInstance.id + "_dlItems_ctl"
+																						+ i.IntegerDigits(2) + "_item" );
+						o = o.parentElement.parentElement;
+
+						
+						if (s.substring(0, t.length).toLowerCase() == t.toLowerCase())
+						{
+							o.style.visibility = "visible";
+							o.style.display = "block";
+							viscnt++;
+						}
+						else
+						{
+							o.style.visibility = "hidden";
+							o.style.display = "none";
+						}
+					}
+					if( viscnt == 0)
+						parentInstance.setVisibility(false);
+					else if( viscnt < 10 )
+						parentInstance.divPopup.style.pixelHeight = viscnt * 20 + 2;
+					else
+						parentInstance.divPopup.style.pixelHeight = 200;
+				}
+			);
+		}
+
+		CustomCombo.prototype.setVisibility = function(visible)
+		{
+			for (i=0; i<this.Texts.length; i++)
+			{
+				var o = document.getElementById( this.id + "_dlItems_ctl"
+																				+ i.IntegerDigits(2) + "_item" );
+				
+				if (o != null)
+				{
+					o = o.parentElement.parentElement;
+					
+					if (visible)
+					{
+						o.style.visibility = "visible";
+						o.style.display = "block";
+						
+						var p = this.page.GetControlCoords(this.id + "_text");
+				
+						this.divPopup.style.pixelLeft = p.GetX();
+						this.divPopup.style.pixelTop = p.GetY()
+							+ this.controlHandle.clientHeight + 2;
+						
+						this.divPopup.style.visibility = "visible";
+						this.divPopup.style.display = "block";
+					}
+					else
+					{
+						o.style.visibility = "hidden";
+						o.style.display = "none";
+						
+						this.divPopup.style.visibility = "hidden";
+						this.divPopup.style.display = "none";
+					}
+				}
+			}
+			
+			if( this.Texts.length < 10 )
+				this.divPopup.style.pixelHeight = this.Texts.length * 20 + 2;
+			else
+				this.divPopup.style.pixelHeight = 200;
+		}
+		
+		CustomCombo.prototype.selectItem = function(value)
+		{
+			var idx = -1;
+			for (i=0; i<this.Values.length; i++)
+			{
+				if (this.Values[i] == value)
+				{
+					idx = i;
+					break;
+				}
+			}
+			
+			if (idx >= 0)
+			{			
+				var s = this.Texts[idx];
+				this.controlHandle.value = s;
+				this.hidValue.value = value;
+				this.selectedValue = value;
+			}
+			else
+			{
+				this.controlHandle.value = "";
+				this.hidValue.value = "";
+				this.selectedValue = null;
+			}
+		}
+		
+
+//End Class CustomCombo

@@ -1,0 +1,262 @@
+//Class Page
+
+	// Constructor *********************************
+	
+	Page = function(_documentHandle)
+	{
+		this.documentHandle = _documentHandle;
+		this.documentHandle.controllerObject = this;
+		this.Controls = new Dictionary();
+		this.ACM = new AJAXConnectionManager();
+		
+		window.onload = this.getWindow_onload();
+		window.onunload = this.getWindow_onunload();
+		window.onscroll = this.getWindow_onscroll();
+	}
+	
+	
+	// Properties **********************************
+	
+	Page.prototype.documentHandle = null;	
+	Page.prototype.Controls = null;	
+	Page.prototype.StatusBar = null;
+	Page.prototype.ACM = null;
+	
+	
+	// Methods *************************************
+
+	Page.prototype.addControl = function(ctl)
+	{
+		if ( (ctl != undefined) && (ctl != null) )
+		{
+			this.Controls.Add(ctl.id, ctl);
+			ctl.page = this;
+		}
+		return (ctl);
+	}
+	
+	Page.prototype.getWindow_onload = function()
+	{
+		var parentInstance = this;
+		
+		return (
+			function()
+			{
+				var lstb = parentInstance.documentHandle.getElementById("lblStatusbar");
+				
+				if (lstb != null)
+					parentInstance.setStatusBar("lblStatusbar");
+				else
+					parentInstance.setStatusBarFromParent("lblStatusbar");
+				
+				
+				//This sets the title in the label if it is an inner window
+				try
+				{
+					parent.document.getElementById("lblPageTitle").innerText = document.title;
+				}
+				catch (e){}
+					
+				//This MUST be defined in the html to add controls
+				//and MUST include page.onLoad();
+				pageOnLoad();
+			}
+		);
+	}
+
+	Page.prototype.getWindow_onunload = function()
+	{
+		var parentInstance = this;
+		
+		return (
+			function()
+			{
+				parentInstance.dispose();
+			}
+		);
+	}
+
+	Page.prototype.onLoad = function()
+	{
+		if (this.StatusBar != null)
+		{
+			if (this.StatusBar.page === this)
+				this.StatusBar.onLoad();
+			else
+			{
+				this.StatusBar.messages.Clear();
+				this.StatusBar.Clear();
+				
+				/*
+				/-------------------- DEBUG INFO --------------------
+				var vs = document.getElementById("__VIEWSTATE");
+
+				var msg = "Document size: "
+					+ Math.round(document.body.innerHTML.length / 1024) + " KB.";
+				
+				if (vs != null)
+					msg += " - ViewState size: " + Math.round(vs.value.length / 1024) + " KB.";
+					
+				this.StatusBar.ShowMessage(msg);
+				*/
+			}
+		}
+		
+		for (var id in this.Controls.Items)
+			this.Controls.Get(id).onLoad();
+			
+		//This is called if exists.
+		//Used to write onload events from server-side code.
+		try
+		{
+			AfterLoadServerEvent();
+		}
+		catch (e) {}
+	}
+	
+	Page.prototype.getWindow_onscroll = function()
+	{
+		var parentInstance = this;
+		
+		return (
+			function()
+			{
+				parentInstance.documentHandle.getElementById("__hidScrollTop").value
+						= parentInstance.documentHandle.body.scrollTop;
+			}
+		);
+	}
+
+	Page.prototype.dispose = function()
+	{
+		for (var id in this.Controls.Items)
+		{
+			this.Controls.Get(id).dispose();
+			this.Controls.Get(id).releaseControlHandle();
+		}
+		this.Controls.Clear();
+		
+		if (this.StatusBar != null)
+		{
+			if (this.StatusBar.page === this)
+			{
+				this.StatusBar.dispose();
+				this.StatusBar.releaseControlHandle();
+			}
+			this.StatusBar = null;
+		}
+		
+		this.ACM.Dispose();
+		this.ACM = null;
+		
+		this.documentHandle.controllerObject = null;
+		this.documentHandle = null;
+	}
+	
+	Page.prototype.isValid = function()
+	{
+		for (var id in this.Controls.Items)
+			if (! this.Controls.Get(id).isValid()) return (false);
+		return (true);
+	}
+	
+	Page.prototype.setStatusBar = function(id)
+	{
+		try
+		{
+			this.StatusBar = new StatusBar(id);
+			this.StatusBar.page = this;
+		}
+		catch (e) {}
+	}
+	
+	Page.prototype.setStatusBarFromParent = function(id)
+	{
+		try
+		{
+			this.StatusBar = window.parent.document.getElementById(id).controllerObject;
+		}
+		catch (e) {}
+	}
+	
+	Page.prototype.ShowAlert = function(contents)
+	{
+		var dop = new DialogOpener();
+		dop.type = dop.OK_ONLY;
+		dop.contents = contents;
+		dop.Show();
+	}
+	
+	Page.prototype.ShowAlertMessage = function(title, msg)
+	{
+		var sMsg = document.createElement("DIV");
+		sMsg.innerHTML = msg;
+		sMsg.style.width = "100%";
+		sMsg.style.paddingTop = "20px";
+		sMsg.style.textAlign = "center";
+		sMsg.style.verticalAlign = "middle";
+
+		var dop = new DialogOpener();
+		dop.title = title;
+		dop.type = dop.OK_ONLY;
+		dop.contents = new Dictionary();
+		dop.contents.Add("unique", sMsg);
+		dop.Show();
+	}
+	
+	Page.prototype.ShowConfirm = function(msg)
+	{
+		var sMsg = document.createElement("DIV");
+		sMsg.innerHTML = msg;
+		sMsg.style.width = "100%";
+		sMsg.style.paddingTop = "20px";
+		sMsg.style.textAlign = "center";
+		sMsg.style.verticalAlign = "middle";
+		
+		var dop = new DialogOpener();
+		dop.height = "160px";
+		dop.width = "300px";
+		dop.type = dop.YES_NO;
+		dop.contents = new Dictionary();
+		dop.contents.Add("unique", sMsg);
+		dop.Show();
+		return (dop.returnValue);
+	}
+	
+	Page.prototype.RestoreScroll = function()
+	{
+		var n = parseInt(this.documentHandle.getElementById("__hidScrollTop").value, 10);
+		
+		if (! isNaN(n))
+			this.documentHandle.body.scrollTop = n;
+	}
+	
+	
+	Page.prototype.ScrollToControl = function(ctlName)
+	{
+		this.documentHandle.getElementById(ctlName).scrollIntoView(true);
+	}
+
+	
+	Page.prototype.GetControlCoords = function(ctlName)
+	{
+		var ctl = this.documentHandle.getElementById(ctlName);
+		var t = ctl.offsetTop;
+		var l = ctl.offsetLeft;
+		while (ctl.offsetParent.tagName != "BODY")
+		{
+			ctl = ctl.offsetParent;
+			t += ctl.offsetTop;
+			l += ctl.offsetLeft;                                   
+		}
+		return ( new Point(l, t) );
+	}
+	
+	
+	Page.prototype.PostBack = function()
+	{
+		__doPostBack('','');
+	}
+	
+			
+//End Class Page

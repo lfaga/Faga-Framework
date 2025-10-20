@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{320FB219-AC4C-4BE7-BEF1-0733A4B208E3}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Faga.Framework.Web</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\Faga.Framework.pfx</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Faga.Framework.Web</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>false</SignAssembly>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Faga.Framework.Web/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Debug\x86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\Release\x86\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>system.web</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Faga.Framework\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Configuration\WebApplicationConfiguration.cs" />
+    <Compile Include="Mail\HtmlMailTemplate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mail\MailSender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mail\MailTemplate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\MailConfigurationElement.cs" />
+    <Compile Include="Configuration\WebApplicationConfigurationSection.cs" />
+    <Compile Include="Configuration\WebUIConfigurationElement.cs" />
+    <Compile Include="UI\Controls\FrameworkPageController.cs" />
+    <Compile Include="UI\Controls\IFrameworkPageController.cs" />
+    <Compile Include="UI\Controls\ListControls.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\Menu\IMenuItemsProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\Menu\MenuItemsProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\Menu\MenuItemsProviderFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\Menu\Model\Collections\MenuItems.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\Menu\Model\MenuItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ScriptableControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserScriptableControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\WebControls\CustomCombo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\WebControls\CustomDataGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\WebControls\DateSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\WebControls\FlashContainer.cs" />
+    <Compile Include="UI\Controls\WebControls\MorphingControl.cs" />
+    <Compile Include="UI\Controls\WebControls\OptionButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\WebControls\SimpleMenuBar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\WebControls\TreeNavControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Templates\BasePageTemplate.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Templates\DataABMTemplate.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Templates\DialogTemplate.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Templates\Events\ABMModeChangeEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Templates\Events\UADialogReturnEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Templates\Events\UAMasterItemEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Templates\PageTemplate.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Templates\PopupTemplate.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Webpages\Message.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Handlers\ParsedJavaScriptHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Faga.Framework.pfx">
+      <Link>Faga.Framework.pfx</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Faga.Framework\Faga.Framework.csproj">
+      <Project>{1E5101FC-D8B2-4F75-8019-4F36BA8055DF}</Project>
+      <Name>Faga.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

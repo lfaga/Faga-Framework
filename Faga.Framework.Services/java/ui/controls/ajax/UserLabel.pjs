@@ -1,0 +1,63 @@
+//Class UserLabel
+
+	// Constructor *********************************
+	
+	UserLabel = function(id)
+	{
+		this.setControlHandle(id);
+		
+		this._logonServiceURL = "{Faga.Framework.Services.Security}/UserLogon";
+		this._logoffServiceURL = "{Faga.Framework.Services.Security}/UserLogoff";
+	}
+		
+	
+	// Inheritance *********************************
+	
+	UserLabel.prototype = new AJAXControl();
+
+
+	// Properties **********************************
+	
+	UserLabel.prototype._logonServiceURL = null;
+	UserLabel.prototype._logoffServiceURL = null;
+	UserLabel.prototype.userName = "";
+		
+	
+	// Methods *************************************
+	
+
+	UserLabel.prototype.onLoad = function()
+	{
+		this.Execute(this._logonServiceURL, "idApplication={ApplicationId}");
+	}
+
+	UserLabel.prototype.dispose = function()
+	{
+		this.Execute(this._logoffServiceURL, "idApplication={ApplicationId}");
+	}
+	
+	UserLabel.prototype.ParseResponse = function(_responseXML)
+	{
+		try
+		{
+			if (this.controlHandle != null)
+			{
+				var objs = _responseXML.getElementsByTagName("UserName");
+				if (objs != null)
+					this.controlHandle.innerText = objs[0].text;
+			}
+		}
+		catch (e)
+		{
+			if (this.controlHandle != null)
+				this.controlHandle.innerText = e.message;
+		}
+	}
+
+	UserLabel.prototype.toString = function()
+	{
+		return ("UserLabel object");
+	}
+	
+	
+//End Class UserLabel
